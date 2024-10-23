@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Petstore.Data.Object;
 using Server.Context;
 using Server.DTO;
@@ -20,7 +21,7 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] ProductDTO dto)
+        public async Task<ActionResult> CreateProduct([FromBody] ProductDTO dto)
         {
             try
             {
@@ -35,10 +36,12 @@ namespace Server.Controllers
 
                 objResponse.Message = "";
                 objResponse.Data = "SuccessFully created Data";
+                objResponse.success = true; objResponse.Message = "Product created successfully";
+                objResponse.Data = "Successfully created data";
                 objResponse.success = true;
 
 
-                return Ok(objResponse);
+                return Ok(JsonConvert.SerializeObject(objResponse));
             }
             catch (Exception ex)
             {

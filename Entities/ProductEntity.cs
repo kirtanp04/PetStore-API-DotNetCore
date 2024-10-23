@@ -7,6 +7,7 @@ namespace Server.Entities
         [Key]
         public long Id { get; set; }
 
+        [Required]
         public string Brand { get; set; }
         public string Title { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
